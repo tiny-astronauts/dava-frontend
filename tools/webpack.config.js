@@ -1,10 +1,13 @@
 const path = require('path');
 const webpack = require('webpack');
 module.exports = {
-  entry: path.resolve(__dirname, '..', 'src'),
+  entry: [
+    path.resolve(__dirname, '..', 'src'),
+    'webpack-hot-middleware/client',
+  ],
   output: {
     path: path.resolve(__dirname, '..', 'lib'),
-    public_path: 'lib',
+    public_path: '/lib/',
     filename: 'bundle.js',
   },
   module: {
@@ -30,5 +33,8 @@ module.exports = {
         exclude: /node_modules/,
       }
     ],
-  }
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+  ]
 }
