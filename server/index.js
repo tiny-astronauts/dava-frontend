@@ -15,8 +15,9 @@ app.use('/graphql', graphqlHTTP({
   graphql: true,
 }))
 
+
 if (process.env.NODE_ENV === 'production') {
-  app.use('/lib', express.static(path.join(__dirname, '..', 'lib')));
+  app.use('lib', express.static(path.join(__dirname, '..', 'lib')));
 } else {
   app.use(require('webpack-dev-middleware')(compiler, {
     noInfo: true,
@@ -31,11 +32,11 @@ app.set('view engine', 'ejs');
 
 app.get('*', (req, res) => {
   res.render('index');
-})
+});
 
 getLabel()
 .then(function(json) {
-  console.log(json);
+  console.log('works');
 })
 
 app.listen(port, function(err) {

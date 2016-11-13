@@ -2,14 +2,16 @@ const path = require('path');
 const webpack = require('webpack');
 module.exports = {
   entry: [
-    path.resolve(__dirname, '..', 'src'),
+    'react-hot-loader/patch',
     'webpack-hot-middleware/client',
+    path.resolve(__dirname, '..', 'src'),
   ],
   output: {
     path: path.resolve(__dirname, '..', 'lib'),
-    public_path: '/lib/',
+    publicPath: '/lib/',
     filename: 'bundle.js',
   },
+  devtool: 'cheap-eval-source-map',
   module: {
     loaders: [
       {

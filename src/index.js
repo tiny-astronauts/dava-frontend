@@ -1,8 +1,26 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM, {render} from 'react-dom';
+import {AppContainer} from 'react-hot-loader';
 
-let App = () => (
-  <div>Hello world</div>
-);
+import Root from './root';
 
-ReactDOM.render(<App />, document.getElementById('mount'));
+const rootElement = document.getElementById('mount');
+
+render(
+  <AppContainer>
+    <Root />
+  </AppContainer>,
+  rootElement,
+)
+
+if (module.hot) {
+  module.hot.accept('./root', () => {
+    const NextApp = require('./root').default;
+    render(
+      <AppContainer>
+        <NextApp />
+      </AppContainer>,
+      rootElement,
+    );
+  });
+}
