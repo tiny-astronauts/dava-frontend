@@ -1,0 +1,17 @@
+[
+  {
+    "type": "plain",
+    "id": "01",
+    "text": "hello world"
+  },
+  {
+    "type": "resource",
+    "id": "02",
+    "text": "Here is the dosage for x",
+    "meta": {
+      "title": "Drug",
+      "link": "https://open.fda.gov/api/reference/",
+      "description": "The dosage is 10mg"
+    }
+  }
+]

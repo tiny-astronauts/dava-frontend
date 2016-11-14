@@ -8,13 +8,14 @@ const path = require('path')
 const webpack = require('webpack');
 const webpackConfig = require('../tools/webpack.config');
 const compiler = webpack(webpackConfig);
+const server = require('http').Server(app)
+const io = require('socket.io')(server);
 
 app.use('/graphql', graphqlHTTP({
   schema: schema,
   root: {hello: () => 'hello world'},
   graphql: true,
 }))
-
 
 if (process.env.NODE_ENV === 'production') {
   app.use('lib', express.static(path.join(__dirname, '..', 'lib')));
@@ -39,10 +40,16 @@ getLabel()
   console.log('works');
 })
 
-app.listen(port, function(err) {
+io.on('connection', function(socket) {
+  console.log('socket connected');
+});
+
+server.listen(port, function(err) {
   if (err) {
     console.log('error starting server: ', err);
   } else {
     console.log('server listening on port: ', port);
   }
 });
+
+module.exports = app;

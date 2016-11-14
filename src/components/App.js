@@ -1,7 +1,8 @@
 import React from 'react';
+import MessageInput from './MessageInput.js';
 
 const App = () => (
-  <div>I work</div>
+  <MessageInput />
 )
 
 export default App;
